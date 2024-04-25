@@ -1,0 +1,17 @@
+# FROM node:14.14.0-alpine
+# WORKDIR /app
+# COPY ./package.json ./
+# RUN npm i
+# COPY . .
+# CMD ["npm", "run", "dev"]
+
+
+FROM ubuntu:latest
+RUN apt-get update && \
+    apt-get install -y nodejs npm && \
+    npm install -g npm@7.24.0
+WORKDIR /app
+COPY ./package.json .
+RUN npm i
+COPY . .
+CMD ["npm", "run", "dev"]
